@@ -1,8 +1,9 @@
 import { useMemo, useState } from "react";
-import { Button, Col, Form, Row, Stack } from "react-bootstrap";
+import { Button, Card, Col, Form, Row, Stack } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { Note, Tag } from "./App";
+import { Tag } from "./App";
 import ReactSelect from "react-select";
+import styles from "./NoteList.module.css";
 
 type SimplifiedNote = {
   tags: Tag[];
@@ -12,7 +13,7 @@ type SimplifiedNote = {
 
 type NoteListProps = {
   availableTags: Tag[];
-  notes: Note[];
+  notes: SimplifiedNote[];
 };
 
 export function NoteList({ availableTags, notes }: NoteListProps) {
@@ -93,9 +94,14 @@ export function NoteList({ availableTags, notes }: NoteListProps) {
   );
 }
 function NoteCard({ id, title, tags }: SimplifiedNote) {
-  return <h1>?</h1>;
+  return (
+    <Card
+      as={Link}
+      to={`/${id}`}
+      className={`h-100 text-reset text-decoration-non ${styles.card}`}
+    >
+      <Card.Body></Card.Body>
+    </Card>
+  );
 }
 
-// function setTitle(value: string): void {
-//   throw new Error("Function not implemented.");
-// }
